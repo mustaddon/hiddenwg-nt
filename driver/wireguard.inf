@@ -66,6 +66,6 @@ HKR, , TypesSupported, 0x00010001, 7
 
 [Strings]
 WireGuard.Name = "WireGuard"
-WireGuard.DiskDesc = "WireGuard Driver Install Disk"
-WireGuard.DeviceDesc = "WireGuard Tunnel"
-WireGuard.CompanyName = "WireGuard LLC"
+WireGuard.DiskDesc = "HiddenWG Driver Install Disk"
+WireGuard.DeviceDesc = "HiddenWG Tunnel"
+WireGuard.CompanyName = "HiddenWG"
