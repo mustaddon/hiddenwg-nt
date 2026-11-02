@@ -6,6 +6,7 @@
 #include "interlocked.h"
 #include "cookie.h"
 #include "device.h"
+#include "hidden.h"
 #include "messages.h"
 #include "peer.h"
 #include "queueing.h"
@@ -567,7 +568,8 @@ PacketReceive(WG_DEVICE *Wg, NET_BUFFER_LIST *First)
         NextNbl = NET_BUFFER_LIST_NEXT_NBL(Nbl);
         NET_BUFFER_LIST_NEXT_NBL(Nbl) = NULL;
 
-        if (!PrepareNetBufferListHeader(Nbl))
+        //if (!PrepareNetBufferListHeader(Nbl))
+        if (!PrepareNetBufferListHidden(Nbl, Wg))
             goto cleanup;
         switch (NBL_TYPE_LE32(Nbl))
         {

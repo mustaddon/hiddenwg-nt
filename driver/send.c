@@ -7,6 +7,7 @@
 #include "queueing.h"
 #include "timers.h"
 #include "device.h"
+#include "hidden.h"
 #include "peer.h"
 #include "rcu.h"
 #include "socket.h"
@@ -250,7 +251,7 @@ PacketSendKeepalive(WG_PEER *Peer)
 
     if (NetBufferListIsQueueEmpty(&Peer->StagedPacketQueue))
     {
-        Nbl = MemAllocateNetBufferList(0, 0, sizeof(MESSAGE_DATA) + NoiseEncryptedLen(0));
+        Nbl = MemAllocateNetBufferList(0, 0, sizeof(MESSAGE_DATA) + NoiseEncryptedLen(0) + HIDDEN_HS_LEN);
         if (!Nbl)
             return;
         Nbl->ParentNetBufferList = Nbl;
