@@ -794,7 +794,7 @@ NoiseHandshakeConsumeResponse(CONST MESSAGE_HANDSHAKE_RESPONSE *Src, WG_DEVICE *
      * initiation we started with, while we have an exclusive lock.
      */
     if (Handshake->State != State ||
-        !CryptoEqualMemory32(Handshake->EphemeralPrivate, EphemeralPrivate, NOISE_PUBLIC_KEY_LEN))
+        !CryptoEqualMemory32(Handshake->EphemeralPrivate, EphemeralPrivate))
     {
         MuReleasePushLockExclusive(&Handshake->Lock);
         goto fail;
