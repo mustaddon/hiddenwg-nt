@@ -94,7 +94,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Inf Include="wireguard.inf">
+    <Inf Include="hiddenwg.inf">
       <Filter>Source Files</Filter>
     </Inf>
   </ItemGroup>
