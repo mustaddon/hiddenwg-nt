@@ -1,10 +1,16 @@
-:: 1) download and mount EWDK_ge_release_svc_prod1.iso
+:: 1) download and mount EWDK.iso (https://learn.microsoft.com/en-us/windows-hardware/drivers/other-wdk-downloads)
 :: 2) run as admin D:\LaunchBuildEnv.cmd
-:: 3) run build.bat
+:: 3) execute build.bat within this environment
 
-set BUILDDIR=%~dp0
+@echo off
 
-:: Msbuild "%BUILDDIR%driver\driver.vcxproj" /p:configuration=release /p:platform=x64
-:: Msbuild "%BUILDDIR%api\api.vcxproj" /p:configuration=release /p:platform=x64
+echo "%~1" | findstr /I /R "driver api" >nul
+if %errorlevel%==0 (
+    if "%~2"=="" (set "ARCH=x64") else (set "ARCH=%~2")
+    set "PROJECT_PATH=%~dp0%~1\%~1.vcxproj"
+) else (
+    if "%~1"=="" (set "ARCH=%PROCESSOR_ARCHITECTURE%") else (set "ARCH=%~1")
+    set "PROJECT_PATH=%~dp0wireguard-nt.sln"
+)
 
-Msbuild "%BUILDDIR%wireguard-nt.sln" /p:configuration=release /p:platform=amd64
+Msbuild "%PROJECT_PATH%" /p:configuration=release /p:platform=%ARCH%
