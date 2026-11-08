@@ -26,19 +26,19 @@
   </Target>
 
   <Target Name="Driver-x86"
-    Outputs="$(Configuration)\x86\driver\wireguard.sys;$(Configuration)\x86\driver\wireguard.inf;$(Configuration)\x86\driver\wireguard.cat">
+    Outputs="$(Configuration)\x86\driver\hiddenwg.sys;$(Configuration)\x86\driver\hiddenwg.inf;$(Configuration)\x86\driver\hiddenwg.cat">
     <MSBuild Projects="driver\driver.vcxproj" Targets="Build" Properties="Configuration=$(Configuration);Platform=Win32" />
   </Target>
   <Target Name="Driver-amd64"
-    Outputs="$(Configuration)\amd64\driver\wireguard.sys;$(Configuration)\amd64\driver\wireguard.inf;$(Configuration)\amd64\driver\wireguard.cat">
+    Outputs="$(Configuration)\amd64\driver\hiddenwg.sys;$(Configuration)\amd64\driver\hiddenwg.inf;$(Configuration)\amd64\driver\hiddenwg.cat">
     <MSBuild Projects="driver\driver.vcxproj" Targets="Build" Properties="Configuration=$(Configuration);Platform=x64" />
   </Target>
   <Target Name="Driver-arm"
-    Outputs="$(Configuration)\arm\driver\wireguard.sys;$(Configuration)\arm\driver\wireguard.inf;$(Configuration)\arm\driver\wireguard.cat">
+    Outputs="$(Configuration)\arm\driver\hiddenwg.sys;$(Configuration)\arm\driver\hiddenwg.inf;$(Configuration)\arm\driver\hiddenwg.cat">
     <MSBuild Projects="driver\driver.vcxproj" Targets="Build" Properties="Configuration=$(Configuration);Platform=ARM" />
   </Target>
   <Target Name="Driver-arm64"
-    Outputs="$(Configuration)\arm64\driver\wireguard.sys;$(Configuration)\arm64\driver\wireguard.inf;$(Configuration)\arm64\driver\wireguard.cat">
+    Outputs="$(Configuration)\arm64\driver\hiddenwg.sys;$(Configuration)\arm64\driver\hiddenwg.inf;$(Configuration)\arm64\driver\hiddenwg.cat">
     <MSBuild Projects="driver\driver.vcxproj" Targets="Build" Properties="Configuration=$(Configuration);Platform=ARM64" />
   </Target>
 
@@ -69,7 +69,7 @@
     Zip Building
   -->
   <PropertyGroup>
-    <ZipTargetPath>dist\wireguard-nt-$(WireGuardVersion).zip</ZipTargetPath>
+    <ZipTargetPath>dist\hwg-nt-$(WireGuardVersion).zip</ZipTargetPath>
     <ZipIntDir>dist\zip-intermediate\</ZipIntDir>
   </PropertyGroup>
   <ItemGroup>
@@ -79,6 +79,11 @@
     <ZipFilesSrc Include="$(Configuration)\amd64\wireguard.dll" /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\amd64\wireguard.dll" />
     <ZipFilesSrc Include="$(Configuration)\arm64\wireguard.dll" /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\arm64\wireguard.dll" />
     <ZipFilesSrc Include="$(Configuration)\x86\wireguard.dll"   /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\x86\wireguard.dll"   />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Signed)'==''">
+    <ZipFilesSrc Include="$(Configuration)\amd64\driver-intermediate\hiddenwg.cer" /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\amd64\test.cer" />
+    <ZipFilesSrc Include="$(Configuration)\arm64\driver-intermediate\hiddenwg.cer" /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\arm64\test.cer" />
+    <ZipFilesSrc Include="$(Configuration)\x86\driver-intermediate\hiddenwg.cer"   /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\x86\test.cer"   />
   </ItemGroup>
   <Target Name="Zip"
     Inputs="@(ZipFilesSrc)"

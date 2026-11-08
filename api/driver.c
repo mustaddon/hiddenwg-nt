@@ -358,7 +358,7 @@ MaybeGetRunningDriverVersion(BOOL ReturnOneIfRunningInsteadOfVersion)
     for (ULONG i = Modules->NumberOfModules; i-- > 0;)
     {
         LPCSTR NtPath = (LPCSTR)Modules->Modules[i].FullPathName;
-        if (!_stricmp(&NtPath[Modules->Modules[i].OffsetToFileName], "wireguard.sys"))
+        if (!_stricmp(&NtPath[Modules->Modules[i].OffsetToFileName], "hiddenwg.sys"))
         {
             if (ReturnOneIfRunningInsteadOfVersion)
             {
@@ -538,9 +538,9 @@ DriverInstall(HDEVINFO *DevInfoExistingAdaptersForCleanup, SP_DEVINFO_DATA_LIST 
     WCHAR CatPath[MAX_PATH] = { 0 };
     WCHAR SysPath[MAX_PATH] = { 0 };
     WCHAR InfPath[MAX_PATH] = { 0 };
-    if (!PathCombineW(CatPath, RandomTempSubDirectory, L"wireguard.cat") ||
-        !PathCombineW(SysPath, RandomTempSubDirectory, L"wireguard.sys") ||
-        !PathCombineW(InfPath, RandomTempSubDirectory, L"wireguard.inf"))
+    if (!PathCombineW(CatPath, RandomTempSubDirectory, L"hiddenwg.cat") ||
+        !PathCombineW(SysPath, RandomTempSubDirectory, L"hiddenwg.sys") ||
+        !PathCombineW(InfPath, RandomTempSubDirectory, L"hiddenwg.inf"))
     {
         LastError = ERROR_BUFFER_OVERFLOW;
         goto cleanupDirectory;
@@ -549,21 +549,21 @@ DriverInstall(HDEVINFO *DevInfoExistingAdaptersForCleanup, SP_DEVINFO_DATA_LIST 
     WCHAR *CatSource, *SysSource, *InfSource;
     if (NativeMachine == IMAGE_FILE_PROCESS)
     {
-        CatSource = L"wireguard.cat";
-        SysSource = L"wireguard.sys";
-        InfSource = L"wireguard.inf";
+        CatSource = L"hiddenwg.cat";
+        SysSource = L"hiddenwg.sys";
+        InfSource = L"hiddenwg.inf";
     }
     else if (NativeMachine == IMAGE_FILE_MACHINE_AMD64)
     {
-        CatSource = L"wireguard-amd64.cat";
-        SysSource = L"wireguard-amd64.sys";
-        InfSource = L"wireguard-amd64.inf";
+        CatSource = L"hiddenwg-amd64.cat";
+        SysSource = L"hiddenwg-amd64.sys";
+        InfSource = L"hiddenwg-amd64.inf";
     }
     else if (NativeMachine == IMAGE_FILE_MACHINE_ARM64)
     {
-        CatSource = L"wireguard-arm64.cat";
-        SysSource = L"wireguard-arm64.sys";
-        InfSource = L"wireguard-arm64.inf";
+        CatSource = L"hiddenwg-arm64.cat";
+        SysSource = L"hiddenwg-arm64.sys";
+        InfSource = L"hiddenwg-arm64.inf";
     }
     else
     {

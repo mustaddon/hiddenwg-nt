@@ -9,7 +9,7 @@
 #include <Windows.h>
 #include <SetupAPI.h>
 
-#define WIREGUARD_HWID L"WireGuard"
+#define WIREGUARD_HWID L"HiddenWG"
 
 typedef struct _SP_DEVINFO_DATA_LIST SP_DEVINFO_DATA_LIST;
 

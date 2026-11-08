@@ -27,9 +27,9 @@ BEGIN
       VALUE "CompanyName", "HiddenWG"
       VALUE "FileDescription", "HiddenWG Driver"
       VALUE "FileVersion", EXPAND(WIREGUARD_VERSION)
-      VALUE "InternalName", "wireguard.sys"
+      VALUE "InternalName", "hiddenwg.sys"
       VALUE "LegalCopyright", "Copyright \xa9 2026 Leonid Salavatov. All Rights Reserved."
-      VALUE "OriginalFilename", "wireguard.sys"
+      VALUE "OriginalFilename", "hiddenwg.sys"
       VALUE "ProductName", "HiddenWG Driver"
       VALUE "ProductVersion", EXPAND(WIREGUARD_VERSION)
       VALUE "Comments", "https://github.com/mustaddon/wireguard-nt/"

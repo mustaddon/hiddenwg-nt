@@ -8,28 +8,28 @@
 
 #pragma code_page(1252)
 
-wireguard.cat RCDATA "driver\\wireguard.cat"
-wireguard.inf RCDATA "driver\\wireguard.inf"
-wireguard.sys RCDATA "driver\\wireguard.sys"
+hiddenwg.cat RCDATA "driver\\hiddenwg.cat"
+hiddenwg.inf RCDATA "driver\\hiddenwg.inf"
+hiddenwg.sys RCDATA "driver\\hiddenwg.sys"
 
 #if defined(WANT_AMD64_WOW64)
 #    if defined(BUILT_AMD64_WOW64)
-wireguard-amd64.cat RCDATA "amd64\\driver\\wireguard.cat"
-wireguard-amd64.inf RCDATA "amd64\\driver\\wireguard.inf"
-wireguard-amd64.sys RCDATA "amd64\\driver\\wireguard.sys"
+wireguard-amd64.cat RCDATA "amd64\\driver\\hiddenwg.cat"
+wireguard-amd64.inf RCDATA "amd64\\driver\\hiddenwg.inf"
+wireguard-amd64.sys RCDATA "amd64\\driver\\hiddenwg.sys"
 setupapihost-amd64.dll RCDATA "amd64\\setupapihost.dll"
 #    else
-#        pragma message("AMD64 wireguard.sys was not built, so this will not work from WOW64")
+#        pragma message("AMD64 hiddenwg.sys was not built, so this will not work from WOW64")
 #    endif
 #endif
 #if defined(WANT_ARM64_WOW64)
 #    if defined(BUILT_ARM64_WOW64)
-wireguard-arm64.cat RCDATA "arm64\\driver\\wireguard.cat"
-wireguard-arm64.inf RCDATA "arm64\\driver\\wireguard.inf"
-wireguard-arm64.sys RCDATA "arm64\\driver\\wireguard.sys"
+wireguard-arm64.cat RCDATA "arm64\\driver\\hiddenwg.cat"
+wireguard-arm64.inf RCDATA "arm64\\driver\\hiddenwg.inf"
+wireguard-arm64.sys RCDATA "arm64\\driver\\hiddenwg.sys"
 setupapihost-arm64.dll RCDATA "arm64\\setupapihost.dll"
 #    else
-#        pragma message("ARM64 wireguard.sys was not built, so this will not work from WOW64")
+#        pragma message("ARM64 hiddenwg.sys was not built, so this will not work from WOW64")
 #    endif
 #endif
 
@@ -50,9 +50,9 @@ BEGIN
       VALUE "CompanyName", "HiddenWG"
       VALUE "FileDescription", "HiddenWG API Library"
       VALUE "FileVersion", EXPAND(WIREGUARD_VERSION)
-      VALUE "InternalName", "wireguard.dll"
+      VALUE "InternalName", "hiddenwg.dll"
       VALUE "LegalCopyright", "Copyright \xa9 2026 Leonid Salavatov. All Rights Reserved."
-      VALUE "OriginalFilename", "wireguard.dll"
+      VALUE "OriginalFilename", "hiddenwg.dll"
       VALUE "ProductName", "HiddenWG Driver"
       VALUE "ProductVersion", EXPAND(WIREGUARD_VERSION)
       VALUE "Comments", "https://github.com/mustaddon/wireguard-nt/"

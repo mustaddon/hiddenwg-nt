@@ -4,13 +4,8 @@
 
 @echo off
 
-echo "%~1" | findstr /I /R "driver api" >nul
-if %errorlevel%==0 (
-    if "%~2"=="" (set "ARCH=x64") else (set "ARCH=%~2")
-    set "PROJECT_PATH=%~dp0%~1\%~1.vcxproj"
+if "%~1"=="" (
+    Msbuild "%~dp0wireguard-nt.sln" /p:configuration=release /p:platform=%PROCESSOR_ARCHITECTURE%
 ) else (
-    if "%~1"=="" (set "ARCH=%PROCESSOR_ARCHITECTURE%") else (set "ARCH=%~1")
-    set "PROJECT_PATH=%~dp0wireguard-nt.sln"
+    Msbuild "%~dp0wireguard-nt.proj" /t:%~1 %~2
 )
-
-Msbuild "%PROJECT_PATH%" /p:configuration=release /p:platform=%ARCH%

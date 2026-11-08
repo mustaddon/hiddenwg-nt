@@ -1,0 +1,71 @@
+; SPDX-License-Identifier: GPL-2.0
+;
+; Copyright (C) 2018-2026 HiddenWG LLC. All Rights Reserved.
+
+[Version]
+Signature = "$Windows NT$"
+Class = Net
+ClassGUID = {4D36E972-E325-11CE-BFC1-08002BE10318}
+Provider = %HiddenWG.CompanyName%
+CatalogFile.NT = hiddenwg.cat
+PnpLockDown = 1
+
+[Manufacturer]
+%HiddenWG.CompanyName% = %HiddenWG.Name%, NT$ARCH$
+
+[SourceDisksNames]
+1 = %HiddenWG.DiskDesc%, "", ,
+
+[SourceDisksFiles]
+hiddenwg.sys = 1
+
+[DestinationDirs]
+DefaultDestDir = 12
+HiddenWG.CopyFiles.Sys = 12
+
+[HiddenWG.CopyFiles.Sys]
+hiddenwg.sys, , , 0x00004002 ; COPYFLG_IN_USE_RENAME | COPYFLG_NOSKIP
+
+[HiddenWG.NT$ARCH$]
+%HiddenWG.DeviceDesc% = HiddenWG.Install, HiddenWG
+
+[HiddenWG.Install]
+Characteristics = 0x1 ; NCF_VIRTUAL
+AddReg = HiddenWG.Ndi
+AddProperty = HiddenWG.Properties
+CopyFiles = HiddenWG.CopyFiles.Sys
+*IfType = 53 ; IF_TYPE_PROP_VIRTUAL
+*MediaType = 19 ; NdisMediumIP
+*PhysicalMediaType = 0 ; NdisPhysicalMediumUnspecified
+EnableDhcp = 0 ; Disable DHCP
+
+[HiddenWG.Properties]
+DeviceIcon,,,,"%12%\hiddenwg.sys,-7"
+DeviceBrandingIcon,,,,"%12%\hiddenwg.sys,-7"
+DeviceVendorWebsite,,,,"https://github.com/mustaddon/wireguard-nt/"
+
+[HiddenWG.Install.Services]
+AddService = HiddenWG, 2, HiddenWG.Service, HiddenWG.EventLog ; 2=SPSVCINST_ASSOCSERVICE
+
+[HiddenWG.Ndi]
+HKR, Ndi, Service, 0, HiddenWG
+HKR, Ndi\Interfaces, UpperRange, , "ndis5"
+HKR, Ndi\Interfaces, LowerRange, , "nolower"
+
+[HiddenWG.Service]
+DisplayName = %HiddenWG.Name%
+Description = %HiddenWG.DeviceDesc%
+ServiceType = 1 ; SERVICE_KERNEL_DRIVER
+StartType = 3 ; SERVICE_DEMAND_START
+ErrorControl = 1 ; SERVICE_ERROR_NORMAL
+ServiceBinary = %12%\hiddenwg.sys
+
+[HiddenWG.EventLog]
+HKR, , EventMessageFile, 0x00020000, "%11%\IoLogMsg.dll;%12%\hiddenwg.sys"
+HKR, , TypesSupported, 0x00010001, 7
+
+[Strings]
+HiddenWG.Name = "HiddenWG"
+HiddenWG.DiskDesc = "HiddenWG Driver Install Disk"
+HiddenWG.DeviceDesc = "HiddenWG Tunnel"
+HiddenWG.CompanyName = "HiddenWG"
