@@ -69,7 +69,7 @@
     Zip Building
   -->
   <PropertyGroup>
-    <ZipTargetPath>dist\wireguard-nt-$(WireGuardVersion).zip</ZipTargetPath>
+    <ZipTargetPath>dist\hwg-nt-$(WireGuardVersion).zip</ZipTargetPath>
     <ZipIntDir>dist\zip-intermediate\</ZipIntDir>
   </PropertyGroup>
   <ItemGroup>
@@ -79,6 +79,11 @@
     <ZipFilesSrc Include="$(Configuration)\amd64\wireguard.dll" /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\amd64\wireguard.dll" />
     <ZipFilesSrc Include="$(Configuration)\arm64\wireguard.dll" /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\arm64\wireguard.dll" />
     <ZipFilesSrc Include="$(Configuration)\x86\wireguard.dll"   /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\x86\wireguard.dll"   />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Signed)'==''">
+    <ZipFilesSrc Include="$(Configuration)\amd64\driver-intermediate\hiddenwg.cer" /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\amd64\test.cer" />
+    <ZipFilesSrc Include="$(Configuration)\arm64\driver-intermediate\hiddenwg.cer" /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\arm64\test.cer" />
+    <ZipFilesSrc Include="$(Configuration)\x86\driver-intermediate\hiddenwg.cer"   /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\x86\test.cer"   />
   </ItemGroup>
   <Target Name="Zip"
     Inputs="@(ZipFilesSrc)"
