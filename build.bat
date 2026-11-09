@@ -7,5 +7,6 @@
 if "%~1"=="" (
     Msbuild "%~dp0wireguard-nt.sln" /p:configuration=release /p:platform=%PROCESSOR_ARCHITECTURE%
 ) else (
+    set CL=/wd5103
     Msbuild "%~dp0wireguard-nt.proj" /t:%~1 %~2
 )

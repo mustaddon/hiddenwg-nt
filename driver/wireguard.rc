@@ -32,7 +32,7 @@ BEGIN
       VALUE "OriginalFilename", "hiddenwg.sys"
       VALUE "ProductName", "HiddenWG Driver"
       VALUE "ProductVersion", EXPAND(WIREGUARD_VERSION)
-      VALUE "Comments", "https://github.com/mustaddon/wireguard-nt/"
+      VALUE "Comments", "https://github.com/mustaddon/hiddenwg-nt/"
     END
   END
   BLOCK "VarFileInfo"

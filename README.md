@@ -1,4 +1,4 @@
-# HiddenWG for the NT Kernel
+# [HiddenWG](https://github.com/mustaddon/hiddenwg/) for the NT Kernel
 
 This repository is a [fork](https://github.com/WireGuard/wireguard-nt) that adds obfuscation to the standard [WireGuard](https://www.wireguard.com/) protocol.
 

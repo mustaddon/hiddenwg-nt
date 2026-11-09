@@ -42,7 +42,7 @@ EnableDhcp = 0 ; Disable DHCP
 [HiddenWG.Properties]
 DeviceIcon,,,,"%12%\hiddenwg.sys,-7"
 DeviceBrandingIcon,,,,"%12%\hiddenwg.sys,-7"
-DeviceVendorWebsite,,,,"https://github.com/mustaddon/wireguard-nt/"
+DeviceVendorWebsite,,,,"https://github.com/mustaddon/hiddenwg-nt/"
 
 [HiddenWG.Install.Services]
 AddService = HiddenWG, 2, HiddenWG.Service, HiddenWG.EventLog ; 2=SPSVCINST_ASSOCSERVICE

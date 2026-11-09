@@ -69,7 +69,7 @@
     Zip Building
   -->
   <PropertyGroup>
-    <ZipTargetPath>dist\hwg-nt-$(WireGuardVersion).zip</ZipTargetPath>
+    <ZipTargetPath>dist\hiddenwg-nt-$(WireGuardVersion).zip</ZipTargetPath>
     <ZipIntDir>dist\zip-intermediate\</ZipIntDir>
   </PropertyGroup>
   <ItemGroup>
@@ -81,9 +81,18 @@
     <ZipFilesSrc Include="$(Configuration)\x86\wireguard.dll"   /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\x86\wireguard.dll"   />
   </ItemGroup>
   <ItemGroup Condition="'$(Signed)'==''">
-    <ZipFilesSrc Include="$(Configuration)\amd64\driver-intermediate\hiddenwg.cer" /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\amd64\test.cer" />
-    <ZipFilesSrc Include="$(Configuration)\arm64\driver-intermediate\hiddenwg.cer" /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\arm64\test.cer" />
-    <ZipFilesSrc Include="$(Configuration)\x86\driver-intermediate\hiddenwg.cer"   /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\x86\test.cer"   />
+    <ZipFilesSrc Include="$(Configuration)\amd64\driver-intermediate\hiddenwg.cer" /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\amd64\hiddenwg.cer" />
+    <ZipFilesSrc Include="$(Configuration)\amd64\driver\hiddenwg.inf" /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\amd64\hiddenwg.inf" />
+    <ZipFilesSrc Include="$(Configuration)\amd64\driver\hiddenwg.cat" /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\amd64\hiddenwg.cat" />
+    <ZipFilesSrc Include="$(Configuration)\amd64\driver\hiddenwg.sys" /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\amd64\hiddenwg.sys" />
+    <ZipFilesSrc Include="$(Configuration)\arm64\driver-intermediate\hiddenwg.cer" /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\arm64\hiddenwg.cer" />
+    <ZipFilesSrc Include="$(Configuration)\arm64\driver\hiddenwg.inf" /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\arm64\hiddenwg.inf" />
+    <ZipFilesSrc Include="$(Configuration)\arm64\driver\hiddenwg.cat" /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\arm64\hiddenwg.cat" />
+    <ZipFilesSrc Include="$(Configuration)\arm64\driver\hiddenwg.sys" /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\arm64\hiddenwg.sys" />
+    <ZipFilesSrc Include="$(Configuration)\x86\driver-intermediate\hiddenwg.cer"   /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\x86\hiddenwg.cer"   />
+    <ZipFilesSrc Include="$(Configuration)\x86\driver\hiddenwg.inf" /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\x86\hiddenwg.inf" />
+    <ZipFilesSrc Include="$(Configuration)\x86\driver\hiddenwg.cat" /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\x86\hiddenwg.cat" />
+    <ZipFilesSrc Include="$(Configuration)\x86\driver\hiddenwg.sys" /><ZipFilesDst Include="$(ZipIntDir)wireguard-nt\bin\x86\hiddenwg.sys" />
   </ItemGroup>
   <Target Name="Zip"
     Inputs="@(ZipFilesSrc)"
